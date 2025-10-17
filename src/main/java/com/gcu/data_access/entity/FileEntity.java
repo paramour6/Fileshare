@@ -39,9 +39,6 @@ public class FileEntity
     @Column(name="hashed_file_name", nullable=false, unique=true)
     private String hashedFileName;
 
-    @Column(name="hash_salt", nullable=false)
-    private String hashSalt;
-
     public long getId() 
     {
         return this.id;
@@ -100,15 +97,5 @@ public class FileEntity
     public void setHashedFileName(String hashedFileName) 
     {
         this.hashedFileName = hashedFileName;
-    }
-
-    public String getHashSalt() 
-    {
-        return this.hashSalt;
-    }
-
-    public void setHashSalt(String hashSalt) 
-    {
-        this.hashSalt = hashSalt;
     }
 }

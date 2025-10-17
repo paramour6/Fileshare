@@ -29,7 +29,6 @@ CREATE TABLE Files (
     file_type VARCHAR(64) NOT NULL,
     file_size_kb INT NOT NULL,
     hashed_file_name VARCHAR(256) UNIQUE NOT NULL,
-    hash_salt VARCHAR(16) NOT NULL,
     CONSTRAINT fk_collection_id FOREIGN KEY(collection_id)
     REFERENCES Collections(collection_id)
     ON DELETE CASCADE ON UPDATE CASCADE
