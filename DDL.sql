@@ -14,7 +14,7 @@ CREATE TABLE Users (
 CREATE TABLE Collections (
 	collection_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     user_id BIGINT NOT NULL,
-    private BOOL NOT NULL,
+    is_private BOOL NOT NULL,
     created_at DATE NOT NULL,
     CONSTRAINT fk_user_id FOREIGN KEY(user_id)
     REFERENCES Users(user_id)
