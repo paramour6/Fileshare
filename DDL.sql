@@ -26,6 +26,7 @@ CREATE TABLE Files (
 	file_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     collection_id BIGINT NOT NULL,
     file_name VARCHAR(256) NOT NULL,
+    file_type VARCHAR(64) NOT NULL,
     file_size_kb INT NOT NUll,
     hashed_file_name VARCHAR(256) UNIQUE NOT NULL,
     hash_salt VARCHAR(16) NOT NULL,
