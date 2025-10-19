@@ -23,6 +23,11 @@ public class UserEntity
     @Column(name="password_hash", nullable=false)
     private String passwordHash;
 
+    public UserEntity(long id)
+    {
+        this.id = id;
+    }
+
     public long getId()
     {
         return id;

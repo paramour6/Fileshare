@@ -39,6 +39,11 @@ public class FileEntity
     @Column(name="hashed_file_name", nullable=false, unique=true)
     private String hashedFileName;
 
+    public FileEntity(long id)
+    {
+        this.id = id;
+    }
+
     public long getId() 
     {
         return this.id;

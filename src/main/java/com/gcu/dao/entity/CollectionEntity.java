@@ -34,6 +34,11 @@ public class CollectionEntity
     @Column(name="created_at", nullable=false)
     private LocalDate createdAt;
 
+    public CollectionEntity(long id)
+    {
+        this.id = id;
+    }
+
     public long getId()
     {
         return this.id;
