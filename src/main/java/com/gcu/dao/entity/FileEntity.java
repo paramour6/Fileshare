@@ -1,4 +1,4 @@
-package com.gcu.data_access.entity;
+package com.gcu.dao.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
