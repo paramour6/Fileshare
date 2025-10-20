@@ -20,14 +20,14 @@ public class UserDto
         this.password = "";
     }
 
-    public UserDto(long id, String username, String emailAddress)
+    public UserDto(long id, String username, String emailAddress, String password)
     {
         log.info("UserDto: Parameterized constructor called.");
 
         this.id = id;
         this.username = username;
         this.emailAddress = emailAddress;
-        this.password = "";
+        this.password = password;
     }
 
     public long getId()

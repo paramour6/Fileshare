@@ -13,7 +13,7 @@ public class MapperService
     {
         log.info("MapperService.toDto(UserEntity): Mapping UserEntity to UserDto.");
 
-        UserDto userDto = new UserDto(userEntity.getId(), userEntity.getUsername(), userEntity.getEmailAddress());
+        UserDto userDto = new UserDto(userEntity.getId(), userEntity.getUsername(), userEntity.getEmailAddress(), "");
 
         return userDto;
     }
