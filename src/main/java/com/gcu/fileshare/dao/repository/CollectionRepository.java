@@ -1,11 +1,11 @@
-package com.gcu.dao.repository;
+package com.gcu.fileshare.dao.repository;
 
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Sort;
-import com.gcu.dao.entity.CollectionEntity;
-import com.gcu.dao.entity.UserEntity;
+import com.gcu.fileshare.dao.entity.CollectionEntity;
+import com.gcu.fileshare.dao.entity.UserEntity;
 
 @Repository
 public interface CollectionRepository extends JpaRepository<CollectionEntity, Long>

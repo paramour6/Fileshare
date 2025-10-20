@@ -44,9 +44,16 @@ public class FileEntity
     @Column(name="hash_salt", nullable=false)
     private String hashSalt;
 
-    public FileEntity(long id)
+    public FileEntity() {}
+
+    public FileEntity(CollectionEntity collection, String fileName, String fileType, int fileSizeKb, String hashedFileName, String hashSalt)
     {
-        this.id = id;
+        this.collection = collection;
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.fileSizeKb = fileSizeKb;
+        this.hashedFileName = hashedFileName;
+        this.hashSalt = hashSalt;
     }
 
     public long getId() 

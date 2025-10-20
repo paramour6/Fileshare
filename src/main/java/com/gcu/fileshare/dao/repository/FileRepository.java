@@ -1,9 +1,9 @@
-package com.gcu.dao.repository;
+package com.gcu.fileshare.dao.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.gcu.dao.entity.FileEntity;
-import com.gcu.dao.entity.CollectionEntity;
+import com.gcu.fileshare.dao.entity.FileEntity;
+import com.gcu.fileshare.dao.entity.CollectionEntity;
 import org.springframework.data.domain.Sort;
 import java.util.List;
 

@@ -25,6 +25,8 @@ public class UserEntity
     @Column(name="password_hash", nullable=false)
     private String passwordHash;
 
+    public UserEntity() {}
+
     public UserEntity(long id)
     {
         this.id = id;

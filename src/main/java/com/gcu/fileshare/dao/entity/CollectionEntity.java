@@ -36,9 +36,13 @@ public class CollectionEntity
     @Column(name="created_at", nullable=false)
     private LocalDate createdAt;
 
-    public CollectionEntity(long id)
+    public CollectionEntity() {}
+
+    public CollectionEntity(UserEntity user, boolean visibility, LocalDate createdAt)
     {
-        this.id = id;
+        this.user = user;
+        this.visibility = visibility;
+        this.createdAt = createdAt;
     }
 
     public long getId()

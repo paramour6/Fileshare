@@ -38,9 +38,12 @@ public class SharedCollectionEntity
                 )
     private UserEntity sharedWithUser;
 
-    public SharedCollectionEntity(long id)
+    public SharedCollectionEntity() {}
+
+    public SharedCollectionEntity(CollectionEntity collection, UserEntity sharedWithUser)
     {
-        this.id = id;
+        this.collection = collection;
+        this.sharedWithUser = sharedWithUser;
     }
 
     public long getId()

@@ -1,6 +1,6 @@
-package com.gcu.dao.repository;
+package com.gcu.fileshare.dao.repository;
 
-import com.gcu.dao.entity.UserEntity;
+import com.gcu.fileshare.dao.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 

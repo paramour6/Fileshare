@@ -1,10 +1,10 @@
-package com.gcu.dao.repository;
+package com.gcu.fileshare.dao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.gcu.dao.entity.SharedCollectionEntity;
-import com.gcu.dao.entity.CollectionEntity;
-import com.gcu.dao.entity.UserEntity;
+import com.gcu.fileshare.dao.entity.SharedCollectionEntity;
+import com.gcu.fileshare.dao.entity.CollectionEntity;
+import com.gcu.fileshare.dao.entity.UserEntity;
 import org.springframework.data.domain.Sort;
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface SharedCollectionRepository extends JpaRepository<SharedCollecti
     List<UserEntity> findUsersByCollection(CollectionEntity collection);
     List<UserEntity> findUsersByCollection(CollectionEntity collection, Sort sort);
 
-    List<CollectionEntity> findCollectionsByUser(UserEntity user);
+    List<CollectionEntity> findCollectionsBySharedWithUser(UserEntity sharedWithUser);
 }

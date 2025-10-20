@@ -1,4 +1,4 @@
-package com.gcu.fileshare;
+package com.gcu.fileshare.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
