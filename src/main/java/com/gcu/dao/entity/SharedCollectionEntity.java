@@ -1,12 +1,14 @@
 package com.gcu.dao.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ConstraintMode;
 
 @Entity
+@Table(name="SharedCollections")
 public class SharedCollectionEntity
 {
     @ManyToOne
