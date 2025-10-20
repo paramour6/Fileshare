@@ -1,6 +1,7 @@
 package com.gcu.dao.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ConstraintMode;
 
 @Entity
+@Table(name="Files")
 public class FileEntity 
 {
     @Id
@@ -38,6 +40,9 @@ public class FileEntity
 
     @Column(name="hashed_file_name", nullable=false, unique=true)
     private String hashedFileName;
+
+    @Column(name="hash_salt", nullable=false)
+    private String hashSalt;
 
     public FileEntity(long id)
     {
@@ -102,5 +107,15 @@ public class FileEntity
     public void setHashedFileName(String hashedFileName) 
     {
         this.hashedFileName = hashedFileName;
+    }
+
+    public String getHashSalt()
+    {
+        return this.hashSalt;
+    }
+
+    public void setHashSalt(String hashSalt)
+    {
+        this.hashSalt = hashSalt;
     }
 }
