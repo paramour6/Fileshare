@@ -27,9 +27,11 @@ public class UserEntity
 
     public UserEntity() {}
 
-    public UserEntity(long id)
+    public UserEntity(String username, String emailAddress, String passwordHash)
     {
-        this.id = id;
+        this.username = username;
+        this.emailAddress = emailAddress;
+        this.passwordHash = passwordHash;
     }
 
     public long getId()
