@@ -1,4 +1,4 @@
-package com.gcu;
+package com.gcu.fileshare;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
