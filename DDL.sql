@@ -37,6 +37,7 @@ CREATE TABLE Files (
 
 -- Create SharedCollections table
 CREATE TABLE SharedCollections (
+    shared_collection_id BIGINT PRIMARY KEY AUTO_INCREMENT
 	collection_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL,
     CONSTRAINT fk_shared_collection_id FOREIGN KEY(collection_id)
