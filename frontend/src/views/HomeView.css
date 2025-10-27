@@ -1,0 +1,26 @@
+.home-view {
+  max-width: 720px;
+  margin: 28px auto;
+  padding: 18px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+}
+
+.home-view ul {
+  list-style: none;
+  padding: 0;
+}
+
+.home-view li {
+  margin: 8px 0;
+}
+
+.home-view a {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.home-view a:hover {
+  text-decoration: underline;
+}
