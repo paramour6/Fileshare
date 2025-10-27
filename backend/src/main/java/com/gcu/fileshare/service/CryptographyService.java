@@ -14,11 +14,15 @@ public class CryptographyService
 
     public String hashPassword(String passwordToHash)
     {
+        log.info("CryptographyService.hashPassword: hashPassword method called.");
+
         return passwordEncoder.encode(passwordToHash);
     }
 
     public boolean verifyPassword(String password, String actualPasswordHash)
     {
+        log.info("CryptographyService.verify: verifyPassword method called.");
+
         return passwordEncoder.matches(password, actualPasswordHash);
     }
 }
