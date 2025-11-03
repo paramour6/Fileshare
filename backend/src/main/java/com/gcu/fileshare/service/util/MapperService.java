@@ -1,4 +1,4 @@
-package com.gcu.fileshare.service;
+package com.gcu.fileshare.service.util;
 
 import com.gcu.fileshare.dao.entity.*;
 import com.gcu.fileshare.dto.*;

@@ -1,8 +1,6 @@
 package com.gcu.fileshare.controller;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.gcu.fileshare.service.AuthenticationService;
+
 import com.gcu.fileshare.dto.UserDto;
+import com.gcu.fileshare.dto.auth.LoginRequestDto;
+import com.gcu.fileshare.dto.auth.RegisterDto;
+import com.gcu.fileshare.service.auth.AuthenticationService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
@@ -21,43 +24,32 @@ public class AuthenticationController
     private AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData)
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequestDto loginRequest)
     {
-        String username = loginData.get("username");
-        String password = loginData.get("password");
+        log.info("[AuthenticationController] Logging in user");
 
-        if(username == null || password == null)
+        String token = authenticationService.login(loginRequest);
+
+        if(token.isEmpty())
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username or password field(s) was null!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login details!");
         }
 
-        UserDto user = authenticationService.login(username, password);
-
-        if(user != null)
-        {
-            return ResponseEntity.ok(user);
-        }
-        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username or password was incorrect!");
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> registerData)
+    public ResponseEntity<?> registerUser(@RequestBody RegisterDto registerRequest)
     {
-        String username = registerData.get("username");
-        String emailAddress = registerData.get("emailAddress");
-        String password = registerData.get("password");
+        log.info("[AuthenticationService] Registering user");
 
-        if(username == null || emailAddress == null || password == null)
+        Optional<UserDto> user = authenticationService.register(registerRequest);
+
+        if(user.isEmpty())
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username, email address, or password field(s) was null!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid registration details!");
         }
 
-        UserDto user = authenticationService.register(new UserDto(-1, username, emailAddress, password));
-
-        if(user != null)
-        {
-            return ResponseEntity.ok(user);
-        }
-        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error registering user!");
+        return ResponseEntity.ok(user.get());
     }
 }

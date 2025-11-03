@@ -1,4 +1,4 @@
-package com.gcu.fileshare.service;
+package com.gcu.fileshare.service.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

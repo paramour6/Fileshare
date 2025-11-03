@@ -1,0 +1,120 @@
+import { AxiosRequestConfig } from "axios";
+import CollectionDto from "../models/CollectionDto";
+import FileDto from "../models/FileDto";
+import ApiService from "./ApiService";
+
+export default class CollectionService
+{
+    private backend = ApiService.getInstance();
+
+    public async getAllCollections(): Promise<CollectionDto[]>
+    {
+        try
+        {
+            const response = await this.backend.get("/collections");
+
+            if(response.status !== 200)
+            {
+                throw new Error();
+            }
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error getting all collections!");
+
+            return [];
+        }
+    }
+
+    public async getCollectionFiles(collection: CollectionDto): Promise<FileDto[]>
+    {
+        try
+        {
+            const response = await this.backend.get("/collections/" + collection.id + "/files");
+
+            if(response.status !== 200)
+            {
+                throw new Error();
+            }
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error getting collection files!");
+
+            return [];
+        }
+    }
+
+    public async createCollection(collection: CollectionDto): Promise<CollectionDto | undefined>
+    {
+        try
+        {
+            const response = await this.backend.post("/collections", collection);
+
+            if(response.status !== 200)
+            {
+                throw new Error();
+            }
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error creating collection!");
+
+            return undefined;
+        }
+    }
+
+    public async downloadFile(file: FileDto): Promise<string | null>
+    {
+        try
+        {
+            const config: AxiosRequestConfig = {
+                params: {download: true, filename: file.fileName},
+                responseType: "blob",
+                headers: {"Accept": "application/octet-stream"}
+            }
+            const response = await this.backend.get("/collections/" + file.collectionId + "/files", config);
+
+            if(response.status !== 200)
+            {
+                throw new Error();
+            }
+
+            const blob: Blob = new Blob([response.data], {type: response.headers["Content-Type"]?.toString()})
+            return URL.createObjectURL(blob);
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error downloading file!");
+
+            return null;
+        }
+    }
+
+    public async uploadFiles(collectionId: number, formData: FormData): Promise<boolean>
+    {
+        try
+        {
+            const response = await this.backend.post("/collections/" + collectionId + "/files", formData);
+
+            if(response.status !== 200)
+            {
+                throw new Error();
+            }
+
+            return true;
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error uploading files!");
+
+            return false;
+        }
+    }
+}

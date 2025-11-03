@@ -1,0 +1,49 @@
+.navbar-component {
+	background: #ffffff;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid #e5e7eb;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.navbar-inner {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.brand-name {
+	font-weight: 700;
+	font-size: 1.05rem;
+	color: #111827;
+}
+
+.separator {
+	color: #9ca3af;
+	margin: 0 0.5rem;
+}
+
+.nav-links {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.nav-link {
+	color: #374151;
+	text-decoration: none;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	transition: background-color 120ms ease, color 120ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+	background: #f3f4f6;
+	color: #111827;
+	outline: none;
+}
+
+.nav-link:active {
+	background: #e5e7eb;
+}

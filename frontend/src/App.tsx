@@ -1,26 +1,24 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route, useParams} from "react-router-dom";
-import Login from "./views/LoginView";
-import Home from "./views/HomeView";
-import Register from "./views/RegisterView"
-import Files from "./views/FilesView"
-
-function FilesRouteWrapper(): React.ReactElement {
-  const params = useParams();
-  const username = params.username ?? "";
-  return <Files username={username} />;
-}
+import {Routes, Route} from "react-router-dom";
+import NavbarComponent from './components/navbar/NavbarComponent';
+import HomeView from './views/home/HomeView';
+import CollectionsView from './views/collections/CollectionsView';
+import UsersView from './views/users/UsersView';
+import ProfileView from './views/profile/ProfileView';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      <NavbarComponent></NavbarComponent>
+
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/register" element={<Register/>}></Route>
-        <Route path="/files/:username" element={<FilesRouteWrapper/>}></Route>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/collections" element={<CollectionsView />} />
+        <Route path="/users" element={<UsersView />} />
+        <Route path="/users/:username" element={<ProfileView />} />
+        <Route path="/profile" element={<ProfileView />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
