@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ApiService from "../../services/ApiService";
-import RegisterDto from "../../models/auth/RegisterDto";
+import RegisterDto from "../../auth/RegisterDto";
 
 function RegisterComponent(): React.ReactElement
 {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
@@ -13,13 +15,31 @@ function RegisterComponent(): React.ReactElement
     {
         e.preventDefault();
 
+        if(username.length < 3 || username.length > 36)
+        {
+            setInvalidRegistration(true);
+            return;
+        }
+
+        if(emailAddress.length < 3 || emailAddress.length > 256)
+        {
+            setInvalidRegistration(true);
+            return;
+        }
+
+        if(password.length < 4 || password.length > 256)
+        {
+            setInvalidRegistration(true);
+            return;
+        }
+
         const registerDetails: RegisterDto = {username: username, emailAddress: emailAddress, password: password};
 
-        if(await ApiService.register(registerDetails))
+        if(!(await ApiService.register(registerDetails)))
         {
-            setInvalidRegistration(false);
+            setInvalidRegistration(true);
         }
-        else setInvalidRegistration(true);
+        else navigate("/login");
     }
 
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CollectionDto from "../../models/CollectionDto";
 import CollectionService from "../../services/CollectionService";
-import FileListComponent from "../../components/file-list/FileListComponent";
+// import FileListComponent from "../../components/file-list/FileListComponent";
 
 function CollectionsView(): React.ReactElement
 {
@@ -30,7 +30,7 @@ function CollectionsView(): React.ReactElement
                         <p><strong>Created At: </strong>{collection.createdAt}</p>
 
                         <strong>Files:</strong>
-                        <FileListComponent collection={collection} collectionService={collectionService}/>
+                        {/* <FileListComponent collection={collection} collectionService={collectionService}/> */}
                     </div>
                 ))
             }

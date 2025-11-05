@@ -1,40 +1,52 @@
 import axios, { AxiosInstance } from "axios";
-import LoginDto from "../models/auth/LoginDto";
-import RegisterDto from "../models/auth/RegisterDto";
+import LoginDto from "../auth/LoginDto";
+import RegisterDto from "../auth/RegisterDto";
 
 export default class ApiService
 {
     private static API_URL: string = process.env.REACT_APP_BACKEND_URL!;
+
     public static getInstance(): AxiosInstance
     {
-        return axios.create(
+        const backend = axios.create(
             {
-                baseURL: this.API_URL,
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("jwt")
-                }
+                baseURL: ApiService.API_URL
             }
-        )
+        );
+
+        backend.interceptors.request.use(config =>
+        {
+            const jwt = localStorage.getItem("token");
+            const header = (jwt !== null && jwt.length > 0) ? `Bearer ${jwt}` : "";
+            config.headers.Authorization = header;
+
+            return config;
+        });
+
+        return backend;
     }
 
-    public static async login(loginDetails: LoginDto): Promise<boolean>
+    public static async login(loginDetails: LoginDto, callback: (token: string, userId: number) => void): Promise<boolean>
     {
         try
         {
-            localStorage.removeItem("jwt");
             const response = await axios.post(ApiService.API_URL + "/login", loginDetails);
 
-            if(response.status !== 200)
-            {
-                throw new Error();
-            }
+            if(response.status !== 200) return false;
 
-            localStorage.setItem("jwt", response.data);
+            let token: string = response.data;
+            let userId: number | undefined = await ApiService.fetchCurrentUserId(token)
+
+            if(userId === undefined) return false;
+
+            callback(token, userId);
+
             return true;
         }
         catch(error)
         {
-            console.error("[ApiService] Error logging in");
+            console.error("Invalid login!");
+
             return false;
         }
     }
@@ -43,42 +55,47 @@ export default class ApiService
     {
         try
         {
-            localStorage.removeItem("jwt");
             const response = await axios.post(ApiService.API_URL + "/register", registerDetails);
 
-            if((response.status !== 200))
-            {
-                throw new Error();
-            }
-            
-            return true;
+            return response.status === 200;
         }
-        catch(error)
+        catch(err)
         {
-            console.error("[ApiService] Error registering user");
+            console.error("Invalid registration!");
 
             return false;
         }
     }
 
-    public static async getCurrentUserId(): Promise<number>
+    public static getCurrentUserId(): number | undefined
+    {
+        let userId: string | null = localStorage.getItem("user_id");
+
+        if(userId !== null)
+        {
+            let id = parseInt(userId);
+
+            if(isNaN(id)) return undefined;
+
+            return id;
+        }
+
+        return undefined;
+    }
+
+    private static async fetchCurrentUserId(token: string): Promise<number | undefined>
     {
         try
         {
-            const response = await axios.get(ApiService.API_URL + "/curuserid");
-
-            if(response.status !== 200)
-            {
-                throw new Error();
-            }
+            const response = await axios.get(ApiService.API_URL + "/curuserid", {headers: {Authorization: `Bearer ${token}`}});
 
             return response.data;
         }
         catch(error)
         {
-            console.error("[UserService] Error getting current user ID!");
+            console.error("Could not fetch current user ID!");
 
-            return -1;
+            return undefined;
         }
     }
 }
