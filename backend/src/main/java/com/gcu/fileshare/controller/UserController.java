@@ -32,6 +32,8 @@ public class UserController extends AuthenticatedController
     @GetMapping("/curuserid")
     public ResponseEntity<?> getCurrentUserId()
     {
+        log.info("[UserController] Getting current user ID");
+        
         try
         {
             Optional<UserDto> user = userService.findUserByUsername(getRequestingUser().getUsername());
