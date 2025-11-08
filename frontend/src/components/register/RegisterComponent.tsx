@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./RegisterComponent.css";
 import { useNavigate } from "react-router-dom";
 import ApiService from "../../services/ApiService";
 import RegisterDto from "../../auth/RegisterDto";
@@ -43,20 +44,25 @@ function RegisterComponent(): React.ReactElement
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} /><br />
+        <div className="card card--form">
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
 
-            <label htmlFor="emailAddress">Email Address:</label>
-            <input type="text" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} /><br />
+                <label htmlFor="emailAddress">Email Address</label>
+                <input name="emailAddress" type="email" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
 
-            <label htmlFor="password">Password:</label>
-            <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+                <label htmlFor="password">Password</label>
+                <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-            <button type="submit">Submit</button>
+                <div style={{display: 'flex', gap: 8}}>
+                    <button className="btn" type="submit">Submit</button>
+                </div>
 
-            {invalidRegistration ? <span>Invalid registration!</span> : <></>}
-        </form>
+                {invalidRegistration ? <span className="muted">Invalid registration!</span> : <></>}
+            </form>
+        </div>
     )
 }
 

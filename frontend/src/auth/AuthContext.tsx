@@ -12,7 +12,7 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) =>
 {
-    const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+    const [token, setToken] = useState<string | null>(null);
     
     const isAuthenticated: boolean = (token !== null && token.length > 0);
 

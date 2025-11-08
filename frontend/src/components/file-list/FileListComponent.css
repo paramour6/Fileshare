@@ -1,0 +1,50 @@
+/* File list styled rows */
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+}
+
+.file-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-name {
+  font-weight: 600;
+}
+.file-size {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.file-action a,
+.file-action button {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.file-action a:disabled {
+  opacity: 0.6;
+}
+
+.file-empty {
+  color: var(--muted);
+  padding: 8px;
+}

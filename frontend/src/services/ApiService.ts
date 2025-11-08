@@ -67,7 +67,7 @@ export default class ApiService
         }
     }
 
-    public static getCurrentUserId(): number | undefined
+    public static getCurrentUserId(): number
     {
         let userId: string | null = localStorage.getItem("user_id");
 
@@ -75,12 +75,11 @@ export default class ApiService
         {
             let id = parseInt(userId);
 
-            if(isNaN(id)) return undefined;
+            if(isNaN(id)) throw new Error("Could not parse user ID!");
 
             return id;
         }
-
-        return undefined;
+        else throw new Error("Could not get user_id from local storage!");
     }
 
     private static async fetchCurrentUserId(token: string): Promise<number | undefined>

@@ -1,0 +1,131 @@
+:root {
+  --bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --muted: #6b7280;
+  --accent: #6366f1;
+  --accent-600: #4f46e5;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(20,23,36,0.08);
+  --shadow-strong: 0 10px 30px rgba(20,23,36,0.12);
+  --max-width: 1100px;
+}
+
+/* Global layout */
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, var(--bg), #eef2ff 120%);
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: var(--max-width);
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Card primitives */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-2px);
+}
+
+.card--form {
+  max-width: 420px;
+  margin: 28px auto;
+  padding: 22px;
+}
+
+.card--profile {
+  max-width: 760px;
+  margin: 18px auto;
+  padding: 22px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.card h2, .card h3 {
+  margin: 0 0 12px 0;
+}
+
+/* Forms inside cards */
+.card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card form label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.card form input[type="text"],
+.card form input[type="email"],
+.card form input[type="password"],
+.card form textarea,
+.card form select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+  background: #fff;
+  outline: none;
+  font-size: 0.95rem;
+}
+.card form input:focus,
+.card form textarea:focus,
+.card form select:focus {
+  border-color: var(--accent-600);
+  box-shadow: 0 6px 18px rgba(79,70,229,0.08);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: white;
+  font-weight: 600;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.list-card {
+  padding: 14px;
+}
+
+.user-card p, .collection-card p {
+  margin: 6px 0;
+}
+
+/* Small utilities */
+.flex { display: flex; }
+.flex-between { display:flex; justify-content:space-between; align-items:center }
+
+/* Responsive tweaks */
+@media (max-width: 520px) {
+  .card--form { margin: 12px; padding: 14px }
+  .card-grid { grid-template-columns: 1fr }
+}

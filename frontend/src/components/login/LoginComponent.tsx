@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./LoginComponent.css";
 import { useNavigate } from "react-router-dom";
 import ApiService from "../../services/ApiService";
 import LoginDto from "../../auth/LoginDto";
@@ -26,17 +27,22 @@ function LoginComponent(): React.ReactElement
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <label htmlFor="username">Username:</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} /><br />
+        <div className="card card--form">
+            <h2>Login</h2>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <label htmlFor="username">Username</label>
+                <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
 
-            <label htmlFor="password">Password:</label>
-            <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+                <label htmlFor="password">Password</label>
+                <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-            <button type="submit">Submit</button>
+                <div style={{display: 'flex', gap: 8}}>
+                    <button className="btn" type="submit">Submit</button>
+                </div>
 
-            {invalidCredentials ? (<span>Invalid credentials!</span>) : (<></>)}
-        </form>
+                {invalidCredentials ? (<span className="muted">Invalid credentials!</span>) : (<></>)}
+            </form>
+        </div>
     )
 }
 

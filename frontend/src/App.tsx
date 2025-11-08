@@ -9,6 +9,7 @@ import HomeView from './views/home/HomeView';
 import ProfileView from './views/profile/ProfileView';
 import UsersView from './views/users/UsersView';
 import CollectionsView from './views/collections/CollectionsView';
+import CreateCollectionComponent from './components/create-collection/CreateCollectionComponent';
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
           element={
             <ProtectedRoute>
               <CollectionsView />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/collections/create"
+          element={
+            <ProtectedRoute>
+              <CreateCollectionComponent />
             </ProtectedRoute>
           }
         />

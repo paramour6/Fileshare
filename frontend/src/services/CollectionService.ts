@@ -7,7 +7,7 @@ export default class CollectionService
 {
     private backend = ApiService.getInstance();
 
-    public async getAllCollections(): Promise<CollectionDto[]>
+    public async getAllCollections(visibility?: boolean | undefined, byUserId?: number | undefined): Promise<CollectionDto[]>
     {
         try
         {
@@ -23,6 +23,53 @@ export default class CollectionService
         catch(error)
         {
             console.error("[CollectionService] Error getting all collections!");
+
+            return [];
+        }
+    }
+
+    public async getAllCollectionsByVisibility(visibility: boolean): Promise<CollectionDto[]>
+    {
+        try
+        {
+            if(visibility)
+            {
+                const response = await this.backend.get("/collections?visibility=true");
+
+                if(response.status !== 200) throw new Error();
+
+                return response.data;
+            }
+            else
+            {
+                const response = await this.backend.get("/collections?visibility=false");
+
+                if(response.status !== 200) throw new Error();
+
+                return response.data;
+            }
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error getting collections by visibility!");
+
+            return [];
+        }
+    }
+
+    public async getAllCollectionsByUser(userId: number): Promise<CollectionDto[]>
+    {
+        try
+        {
+            const response = await this.backend.get("/collections?userId=" + userId);
+
+            if(response.status !== 200) throw new Error();
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("[CollectionService] Error getting collections by user!");
 
             return [];
         }

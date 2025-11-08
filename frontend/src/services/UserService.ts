@@ -26,6 +26,38 @@ export default class UserService
         }
     }
 
+    public async getUserById(id: number): Promise<UserDto | undefined>
+    {
+        try
+        {
+            const response = await this.backend.get("/users/" + id);
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("Error getting user by ID!");
+
+            return undefined;
+        }
+    }
+
+    public async getUserByUsername(username: string): Promise<UserDto | undefined>
+    {
+        try
+        {
+            const response = await this.backend.get("/users?username=" + username);
+
+            return response.data;
+        }
+        catch(error)
+        {
+            console.error("[UserService] Error getting user by username!");
+
+            return undefined;
+        }
+    }
+
     // public async getUserByUsername(username: string): Promise<UserDto>
     // {
     //     try
@@ -40,19 +72,22 @@ export default class UserService
     //     }
     // }
 
-    // public async updateUser(user: UserDto): Promise<UserDto>
-    // {
-    //     try
-    //     {
-    //         const response = await axios.put(this.API_URL + "/users/" + user.id, user);
-    //         return response.data;
-    //     }
-    //     catch(error)
-    //     {
-    //         console.error(error);
-    //         throw new Error();
-    //     }
-    // }
+    public async updateUser(user: UserDto): Promise<boolean>
+    {
+        try
+        {
+            const response = await this.backend.post("/users/" + user.id, user);
+            
+            if(response.status !== 200) throw new Error("Error updating user!");
+
+            return true;
+        }
+        catch(error)
+        {
+            console.error(error);
+            return false;
+        }
+    }
 
     // public async deleteUser(id: number): Promise<void>
     // {

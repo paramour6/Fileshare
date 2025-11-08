@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CollectionDto from "../../models/CollectionDto";
 import CollectionService from "../../services/CollectionService";
+import { Link } from "react-router-dom";
+import FileListComponent from "../../components/file-list/FileListComponent";
+import "./CollectionsView.css";
 // import FileListComponent from "../../components/file-list/FileListComponent";
 
 function CollectionsView(): React.ReactElement
@@ -12,28 +15,35 @@ function CollectionsView(): React.ReactElement
     {
         const getCollections = async() =>
         {
-            setCollectionList(await collectionService.getAllCollections());
+            setCollectionList(await collectionService.getAllCollectionsByVisibility(true));
         }
 
         getCollections();
     }, []);
     
     return (
-        <div>
+        <div className="app-container">
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10}}>
+                <h1>Public Collections</h1>
+                <Link to="/collections/create" className="btn">Create</Link>
+            </div>
+
+            <div className="card-grid">
             {
                 collectionList.map((collection, index) =>
                 (
-                    <div key={index}>
+                    <div className="card collection-card" key={index}>
                         <p><strong>ID: </strong>{collection.id}</p>
                         <p><strong>User ID: </strong>{collection.userId}</p>
                         <p><strong>Visibility: </strong>{collection.visibility ? "Public" : "Private"}</p>
                         <p><strong>Created At: </strong>{collection.createdAt}</p>
 
                         <strong>Files:</strong>
-                        {/* <FileListComponent collection={collection} collectionService={collectionService}/> */}
+                        <FileListComponent collection={collection} collectionService={collectionService}/>
                     </div>
                 ))
             }
+            </div>
         </div>
     )
 }

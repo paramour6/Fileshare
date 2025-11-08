@@ -19,17 +19,20 @@ function UsersView(): React.ReactElement
     }, []);
 
     return (
-        <div>
+        <div className="app-container">
+            <h1>Users</h1>
+            <div className="card-grid">
             {
                 userList.map((user, index) =>
                 (
-                    <div key={index}>
+                    <div className="card user-card" key={index}>
                         <p><strong>ID: </strong>{user.id}</p>
                         <p><strong>Username: </strong>{user.username}</p>
                         <p><strong>Email Address: </strong>{user.emailAddress}</p>
                     </div>
                 ))
             }
+            </div>
         </div>
     )
 }
