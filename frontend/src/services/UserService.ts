@@ -58,20 +58,6 @@ export default class UserService
         }
     }
 
-    // public async getUserByUsername(username: string): Promise<UserDto>
-    // {
-    //     try
-    //     {
-    //         const response = await axios.get(this.API_URL + "/users" + "?username=" + username);
-    //         return response.data;
-    //     }
-    //     catch(error)
-    //     {
-    //         console.error(error);
-    //         throw new Error();
-    //     }
-    // }
-
     public async updateUser(user: UserDto): Promise<boolean>
     {
         try
@@ -88,17 +74,4 @@ export default class UserService
             return false;
         }
     }
-
-    // public async deleteUser(id: number): Promise<void>
-    // {
-    //     try
-    //     {
-    //         await axios.delete(this.API_URL + "/users/" + id);
-    //     }
-    //     catch(error)
-    //     {
-    //         console.error(error);
-    //         throw new Error();
-    //     }
-    // }
 }

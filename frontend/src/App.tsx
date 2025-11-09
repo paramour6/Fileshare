@@ -66,15 +66,3 @@ function App() {
 }
 
 export default App;
-
-// <>
-//   <NavbarComponent></NavbarComponent>
-
-//   <Routes>
-//     <Route path="/" element={<HomeView />} />
-//     <Route path="/collections" element={<CollectionsView />} />
-//     <Route path="/users" element={<UsersView />} />
-//     <Route path="/users/:username" element={<ProfileView />} />
-//     <Route path="/profile" element={<ProfileView />} />
-//   </Routes>
-// </>
