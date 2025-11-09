@@ -4,8 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.crypto.SecretKey;
 import org.springframework.stereotype.Component;
+import com.nimbusds.jose.util.StandardCharset;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -13,7 +15,19 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtUtility
 {
     private static final int EXPIRATION_HRS = 1;
-    private static final SecretKey KEY = Jwts.SIG.HS256.key().build();
+    private final SecretKey KEY;
+
+    public JwtUtility()
+    {
+        String secret = System.getenv("JWT_SECRET");
+
+        if(secret == null || secret.isBlank() || secret.isEmpty())
+        {
+            throw new IllegalStateException("JWT_SECRET environment variable was not set!");
+        }
+
+        this.KEY = Keys.hmacShaKeyFor(secret.getBytes(StandardCharset.UTF_8));
+    }
 
     public String createToken(String username)
     {

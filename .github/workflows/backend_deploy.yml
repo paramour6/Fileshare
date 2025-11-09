@@ -4,6 +4,7 @@ env:
   AZURE_WEBAPP_NAME: fileshare
   JAVA_VERSION: "17"
   DISTRIBUTION: "microsoft"
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
   
 on:
   push:
