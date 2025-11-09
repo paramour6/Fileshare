@@ -1,19 +1,17 @@
 package com.gcu.fileshare.controller;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gcu.fileshare.dto.UserDto;
 import com.gcu.fileshare.dto.auth.LoginRequestDto;
 import com.gcu.fileshare.dto.auth.RegisterDto;
 import com.gcu.fileshare.service.auth.AuthenticationService;
-
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -51,5 +49,11 @@ public class AuthenticationController
         }
 
         return ResponseEntity.ok(user.get());
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> root()
+    {
+        return ResponseEntity.ok("You're not supposed to be here...");
     }
 }
