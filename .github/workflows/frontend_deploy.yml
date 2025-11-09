@@ -19,10 +19,6 @@ jobs:
     build:
         runs-on: windows-latest
 
-        defaults:
-            run:
-                working-directory: frontend
-        
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -35,9 +31,11 @@ jobs:
                 cache-dependency-path: frontend/package-lock.json
 
             - name: Install dependencies
+              working-directory: frontend
               run: npm clean-install
 
             - name: Build project
+              working-directory: frontend
               run: |
                 echo "REACT_APP_BACKEND_URL=${{env.REACT_APP_BACKEND_URL}}" >> .env
                 npm run build
