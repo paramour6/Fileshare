@@ -3,7 +3,7 @@ name: Build and deploy Spring Boot backend API to Azure Web App
 env:
   AZURE_WEBAPP_NAME: fileshare
   JAVA_VERSION: "17"
-  DISTRIBUTION: "temurin"
+  DISTRIBUTION: "microsoft"
   
 on:
   push:

@@ -54,6 +54,6 @@ public class AuthenticationController
     @GetMapping("/")
     public ResponseEntity<?> root()
     {
-        return ResponseEntity.ok("You're not supposed to be here... *evil laugh*");
+        return ResponseEntity.ok("You're not supposed to be here... *evil cackle*");
     }
 }
