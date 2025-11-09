@@ -4,12 +4,12 @@ import CollectionService from "../../services/CollectionService";
 import { Link } from "react-router-dom";
 import FileListComponent from "../../components/file-list/FileListComponent";
 import "./CollectionsView.css";
-// import FileListComponent from "../../components/file-list/FileListComponent";
+
+const collectionService: CollectionService = new CollectionService();
 
 function CollectionsView(): React.ReactElement
 {
     const [collectionList, setCollectionList] = useState<CollectionDto[]>([]);
-    const collectionService: CollectionService = new CollectionService();
 
     useEffect(() =>
     {

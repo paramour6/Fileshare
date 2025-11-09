@@ -3,7 +3,6 @@ import "./FileListComponent.css";
 import CollectionDto from "../../models/CollectionDto";
 import FileDto from "../../models/FileDto";
 import CollectionService from "../../services/CollectionService";
-import CreateCollectionComponent from "../create-collection/CreateCollectionComponent";
 
 interface FileListProps
 {

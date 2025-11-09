@@ -9,10 +9,11 @@ import CollectionDto from "../../models/CollectionDto";
 import CollectionService from "../../services/CollectionService";
 import FileListComponent from "../../components/file-list/FileListComponent";
 
+const userService: UserService = new UserService();
+const collectionService: CollectionService = new CollectionService();
+
 function ProfileView(): React.ReactElement
 {
-    const userService: UserService = new UserService();
-    const collectionService: CollectionService = new CollectionService();
     const [collectionList, setCollectionList] = useState<CollectionDto[]>([]);
     const [user, setUser] = useState<UserDto | undefined>(undefined);
     const [usernameField, setUsernameField] = useState("");
@@ -48,7 +49,7 @@ function ProfileView(): React.ReactElement
 
         loadUser();
         loadUserCollections();
-    }, []);
+    }, [logout, navigate]);
 
     const handleEditButton = (e: React.MouseEvent<HTMLButtonElement>) =>
     {
