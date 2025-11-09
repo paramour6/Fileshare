@@ -29,7 +29,7 @@ public class SecurityConfiguration
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> 
-                auth.requestMatchers("/login", "/register", "/", "/users").permitAll()
+                auth.requestMatchers("/login", "/register", "/").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form.disable())
