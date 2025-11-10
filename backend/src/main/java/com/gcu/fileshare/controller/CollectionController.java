@@ -43,13 +43,13 @@ public class CollectionController extends AuthenticatedController
         {
             if(userId == null && visibility == null)
                 {
-                log.info("[CollectionController] Getting all collections");
+                log.info("[CollectionController] Getting all collections.");
 
                 return ResponseEntity.ok(collectionService.findAll());
             }
             else if(visibility == null)
             {
-                log.info("[CollectionController] Getting collections by user");
+                log.info("[CollectionController] Getting collections by user" + userId);
 
                 Optional<UserDto> user = userService.findUserById(userId);
                 
@@ -61,14 +61,14 @@ public class CollectionController extends AuthenticatedController
             }
             else
             {
-                log.info("[CollectionController] Getting collections by visibility");
+                log.info("[CollectionController] Getting collections by visibility of " + visibility);
 
                 return ResponseEntity.ok(collectionService.findAllByVisibility(visibility));
             }
         }
         catch(Exception e)
         {
-            log.error("[UserController] Exception caught in UserService.findAllCollections!");
+            log.error("[CollectionController] Exception caught in UserService.findAllCollections!");
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There was an error getting all collections!");
         }
@@ -77,7 +77,7 @@ public class CollectionController extends AuthenticatedController
     @GetMapping("/collections/{id}")
     public ResponseEntity<?> findCollectionById(@PathVariable long id)
     {
-        log.info("[CollectionController] Getting collection by id");
+        log.info("[CollectionController] Getting collection by id " + id);
 
         try
         {
@@ -100,7 +100,7 @@ public class CollectionController extends AuthenticatedController
     @PostMapping("/collections")
     public ResponseEntity<?> createCollection(@RequestBody CollectionDto collectionDto)
     {
-        log.info("[CollectionController] Creating collection");
+        log.info("[CollectionController] Creating collection.");
 
         try
         {
@@ -123,7 +123,7 @@ public class CollectionController extends AuthenticatedController
     @PostMapping(value="/collections/{id}/files", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadFilesToCollection(@PathVariable long id, @RequestParam("files") List<MultipartFile> files)
     {
-        log.info("[CollectionController] Uploading files to collection");
+        log.info("[CollectionController] Uploading files to collection " + id);
 
         try
         {
@@ -146,7 +146,7 @@ public class CollectionController extends AuthenticatedController
     {
         if(download == null)
         {
-            log.info("[CollectionController] Getting files from collection");
+            log.info("[CollectionController] Getting files from collection " + id);
     
             try
             {
@@ -161,7 +161,7 @@ public class CollectionController extends AuthenticatedController
         }
         else if(filename == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A filename to download was not provided!");
 
-        log.info("[CollectionController] Downloading file from collection");
+        log.info("[CollectionController] Downloading file from collection " + id);
 
         try
         {

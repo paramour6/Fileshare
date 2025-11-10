@@ -11,7 +11,7 @@ public class SharedCollectionDto
 
     public SharedCollectionDto()
     {
-        log.info("SharedCollectionDto: No argument constructor called.");
+        log.info("[SharedCollectionDto] No argument constructor called.");
 
         this.id = -1;
         this.collectionId = -1;
@@ -20,7 +20,7 @@ public class SharedCollectionDto
 
     public SharedCollectionDto(long id, long collectionId, long sharedWithUserId)
     {
-        log.info("SharedCollectionDto: Parameterized constructor called.");
+        log.info("[SharedCollectionDto] Parameterized constructor called.");
 
         this.id = id;
         this.collectionId = collectionId;

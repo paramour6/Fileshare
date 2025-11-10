@@ -9,7 +9,7 @@ public class LoginResponseDto
     
     public LoginResponseDto(String jwtToken)
     {
-        log.info("[LoginResponseDto] Constructor called");
+        log.info("[LoginResponseDto] Parameterizedf constructor called.");
         
         this.jwtToken = jwtToken;
     }

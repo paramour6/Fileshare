@@ -11,7 +11,7 @@ public class RegisterDto
     
     public RegisterDto(String username, String emailAddress, String password)
     {
-        log.info("[RegisterDto] Parameterized constructor called");
+        log.info("[RegisterDto] Parameterized constructor called.");
         
         this.username = username;
         this.emailAddress = emailAddress;

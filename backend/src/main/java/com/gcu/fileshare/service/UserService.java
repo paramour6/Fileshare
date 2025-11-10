@@ -72,7 +72,7 @@ public class UserService
 
     public Optional<UserDto> createUser(RegisterDto registerDetails)
     {
-        log.info("[UserService] createUser(RegisterDto registerDetails) called");
+        log.info("[UserService] createUser(RegisterDto registerDetails) called.");
 
         if(findUserByUsername(registerDetails.getUsername()).isPresent() || findUserByEmailAddress(registerDetails.getEmailAddress()).isPresent())
         {
@@ -88,7 +88,7 @@ public class UserService
 
     public Optional<UserDto> updateUser(UserDto user)
     {
-        log.info("[UserService] updateUser(UserDto user) called");
+        log.info("[UserService] updateUser(UserDto user) called.");
 
         Optional<UserEntity> userEntity = userRepository.findById(user.getId());
 

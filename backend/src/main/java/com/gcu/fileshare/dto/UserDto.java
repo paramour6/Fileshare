@@ -22,7 +22,7 @@ public class UserDto
 
     public UserDto(long id, String username, String emailAddress, String password)
     {
-        log.info("UserDto: Parameterized constructor called.");
+        log.info("[UserDto] Parameterized constructor called.");
 
         this.id = id;
         this.username = username;

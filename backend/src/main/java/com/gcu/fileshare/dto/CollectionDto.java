@@ -12,7 +12,7 @@ public class CollectionDto
 
     public CollectionDto()
     {
-        log.info("CollectionDto: No argument constructor called.");
+        log.info("[CollectionDto] No argument constructor called.");
 
         this.id = -1;
         this.userId = -1;
@@ -22,7 +22,7 @@ public class CollectionDto
 
     public CollectionDto(long id, long userId, boolean visibility, String createdAt)
     {
-        log.info("CollectionDto: Parameterized constructor called.");
+        log.info("[CollectionDto] Parameterized constructor called.");
 
         this.id = id;
         this.userId = userId;

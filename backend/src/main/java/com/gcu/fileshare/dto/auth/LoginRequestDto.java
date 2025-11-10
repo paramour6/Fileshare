@@ -10,7 +10,7 @@ public class LoginRequestDto
     
     public LoginRequestDto(String username, String password)
     {
-        log.info("[LoginRequestDto] Parameterized constructor called");
+        log.info("[LoginRequestDto] Parameterized constructor called.");
 
         this.username = username;
         this.password = password;
@@ -18,7 +18,7 @@ public class LoginRequestDto
 
     public LoginRequestDto()
     {
-        log.info("[LoginRequestDto] Default constructor called");
+        log.info("[LoginRequestDto] Default constructor called.");
         
         this.username = "";
         this.password = "";

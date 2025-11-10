@@ -24,7 +24,7 @@ public class AuthenticationController
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequestDto loginRequest)
     {
-        log.info("[AuthenticationController] Logging in user");
+        log.info("[AuthenticationController] Logging in user.");
 
         String token = authenticationService.login(loginRequest);
 
@@ -39,7 +39,7 @@ public class AuthenticationController
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterDto registerRequest)
     {
-        log.info("[AuthenticationService] Registering user");
+        log.info("[AuthenticationController] Registering user.");
 
         Optional<UserDto> user = authenticationService.register(registerRequest);
 
@@ -54,6 +54,8 @@ public class AuthenticationController
     @GetMapping("/")
     public ResponseEntity<?> root()
     {
+        log.info("[AuthenticationController] Request made to root endpoint...");
+
         return ResponseEntity.ok("You're not supposed to be here... *evil cackle*");
     }
 }

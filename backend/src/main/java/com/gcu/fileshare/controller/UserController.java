@@ -32,7 +32,7 @@ public class UserController extends AuthenticatedController
     @GetMapping("/curuserid")
     public ResponseEntity<?> getCurrentUserId()
     {
-        log.info("[UserController] Getting current user ID");
+        log.info("[UserController] Getting current user ID.");
         
         try
         {
@@ -59,13 +59,13 @@ public class UserController extends AuthenticatedController
         {
             if(username == null && emailAddress == null)
             {
-                log.info("[UserController] Getting all users");
+                log.info("[UserController] Getting all users.");
 
                 return ResponseEntity.ok(userService.findAllUsers());
             }
             else if(emailAddress == null)
             {
-                log.info("[UserController] Getting user by username");
+                log.info("[UserController] Getting user by username " + username);
 
                 Optional<UserDto> user = userService.findUserByUsername(username);
 
@@ -77,7 +77,7 @@ public class UserController extends AuthenticatedController
             }
             else
             {
-                log.info("[UserController] Getting user by email address");
+                log.info("[UserController] Getting user by email address " + emailAddress);
 
                 Optional<UserDto> user = userService.findUserByEmailAddress(emailAddress);
 
@@ -99,7 +99,7 @@ public class UserController extends AuthenticatedController
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUserById(@PathVariable long id)
     {
-        log.info("[UserController] Getting user by ID");
+        log.info("[UserController] Getting user by ID " + id);
 
         try
         {
@@ -122,7 +122,7 @@ public class UserController extends AuthenticatedController
     @PostMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable long id, @RequestBody UserDto userDto)
     {
-        log.info("[UserController] Updating user");
+        log.info("[UserController] Updating user " + id);
 
         try
         {

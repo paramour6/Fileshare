@@ -34,26 +34,36 @@ public class AzureService
 
     public BlobContainerClient createContainer(String containerName)
     {
+        log.info("[AzureService] Creating container " + containerName);
+
         return blobServiceClient.createBlobContainer(containerName);
     }
 
     public BlobContainerClient getContainer(String containerName)
     {
+        log.info("[AzureService] Getting container " + containerName);
+
         return blobServiceClient.getBlobContainerClient(containerName);
     }
 
     public void deleteContainer(String containerName)
     {
+        log.info("[AzureService] Deleting container " + containerName);
+        
         blobServiceClient.deleteBlobContainer(containerName);
     }
 
     public void uploadBlob(BlobContainerClient blobContainer, MultipartFile file) throws IOException
     {
+        log.info("[AzureService] Uploading blob to " + blobContainer.getBlobContainerName());
+
         blobContainer.getBlobClient(file.getOriginalFilename()).upload(BinaryData.fromBytes(file.getBytes()));
     }
 
     public List<BlobClient> getBlobsFromContainer(BlobContainerClient blobContainer)
     {
+        log.info("[AzureService] Getting blobs from " + blobContainer.getBlobContainerName());
+
         List<BlobClient> blobClientList = new ArrayList<>();
 
         blobContainer.listBlobs().forEach(blob -> 
@@ -64,6 +74,8 @@ public class AzureService
 
     public BlobClient getBlobFromContainer(BlobContainerClient blobContainer, String blobName) throws FileNotFoundException
     {
+        log.info("[AzureService] Getting blob from " + blobContainer.getBlobContainerName());
+
         if(blobContainer.getBlobClient(blobName).exists())
         {
             return blobContainer.getBlobClient(blobName);
@@ -74,6 +86,8 @@ public class AzureService
 
     public byte[] getBlobBytes(BlobClient blobClient)
     {
+        log.info("[AzureService] Getting blob bytes.");
+        
         return blobClient.downloadContent().toBytes();
     }
 }

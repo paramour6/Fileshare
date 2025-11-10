@@ -81,7 +81,7 @@ public class CollectionService
 
     public Optional<CollectionDto> createCollection(CollectionDto collection)
     {
-        log.info("[CollectionService] Creating collection");
+        log.info("[CollectionService] Creating collection.");
 
         CollectionEntity collectionEntity = new CollectionEntity();
         Optional<UserEntity> user = userRepository.findById(collection.getUserId());
@@ -104,7 +104,7 @@ public class CollectionService
 
     public boolean uploadFilesToCollection(long collectionId, List<MultipartFile> fileList)
     {
-        log.info("[CollectionService] Uploading list of files to collection");
+        log.info("[CollectionService] Uploading list of files to collection.");
 
         try
         {
@@ -127,7 +127,7 @@ public class CollectionService
 
     public List<FileDto> getCollectionFiles(long collectionId)
     {
-        log.info("[CollectionService] Getting collection files");
+        log.info("[CollectionService] Getting collection files.");
 
     
         List<FileDto> fileDtos = new ArrayList<>();
@@ -150,7 +150,7 @@ public class CollectionService
 
     public byte[] getCollectionFileBytes(long collectionId, String filename) throws FileNotFoundException
     {
-        log.info("[CollectionService] Getting collection file's bytes");
+        log.info("[CollectionService] Getting collection file's bytes.");
 
         BlobContainerClient blobContainer = azureService.getContainer("collection-" + collectionId);
 

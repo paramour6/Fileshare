@@ -11,7 +11,7 @@ public class MapperService
 {
     public static UserDto toDto(UserEntity userEntity)
     {
-        log.info("MapperService.toDto(UserEntity): Mapping UserEntity to UserDto.");
+        log.info("[MapperService] Mapping UserEntity to UserDto.");
 
         UserDto userDto = new UserDto(userEntity.getId(), userEntity.getUsername(), userEntity.getEmailAddress(), "");
 
@@ -20,7 +20,7 @@ public class MapperService
 
     public static CollectionDto toDto(CollectionEntity collectionEntity)
     {
-        log.info("MapperService.toDto(CollectionEntity): Mapping CollectionEntity to CollectionDto.");
+        log.info("[MapperService] Mapping CollectionEntity to CollectionDto.");
 
         CollectionDto collectionDto = new CollectionDto(collectionEntity.getId(),
                                                         collectionEntity.getUser().getId(),
@@ -32,7 +32,7 @@ public class MapperService
 
     public static FileDto toDto(FileEntity fileEntity)
     {
-        log.info("MapperService.toDto(FileEntity): Mapping FileEntity to FileDto.");
+        log.info("[MapperService] Mapping FileEntity to FileDto.");
 
         FileDto fileDto = new FileDto(fileEntity.getId(),
                                       fileEntity.getCollection().getId(),
@@ -45,7 +45,7 @@ public class MapperService
 
     public static SharedCollectionDto toDto(SharedCollectionEntity sharedCollectionEntity)
     {
-        log.info("MapperService.toDto(SharedCollectionEntity): Mapping SharedCollectionEntity to SharedCollectionDto.");
+        log.info("[MapperService] Mapping SharedCollectionEntity to SharedCollectionDto.");
 
         SharedCollectionDto sharedCollectionDto = new SharedCollectionDto(sharedCollectionEntity.getId(), sharedCollectionEntity.getCollection().getId(),
                                                                           sharedCollectionEntity.getSharedWithUser().getId());

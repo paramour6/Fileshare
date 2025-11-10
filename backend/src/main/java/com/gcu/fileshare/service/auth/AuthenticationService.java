@@ -31,7 +31,7 @@ public class AuthenticationService
 
     public String login(LoginRequestDto loginRequest)
     {
-        log.info("[AuthenticationService] Logging in");
+        log.info("[AuthenticationService] Logging in.");
 
         Optional<UserEntity> userEntity = userRepository.findByUsername(loginRequest.getUsername());
 
@@ -51,7 +51,7 @@ public class AuthenticationService
 
     public Optional<UserDto> register(RegisterDto registerRequest)
     {
-        log.info("[AuthenticationService] Registering user");
+        log.info("[AuthenticationService] Registering user.");
 
         return userService.createUser(registerRequest);
     }

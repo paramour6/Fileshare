@@ -13,7 +13,7 @@ public class FileDto
     
     public FileDto()
     {
-        log.info("FileDto: No argument constructor called.");
+        log.info("[FileDto] No argument constructor called.");
 
         this.id = -1;
         this.collectionId = -1;
@@ -24,7 +24,7 @@ public class FileDto
     
     public FileDto(long id, long collectionId, String fileName, String fileType, int fileSizeKb)
     {
-        log.info("FileDto: Parameterized constructor called.");
+        log.info("[FileDto] Parameterized constructor called.");
 
         this.id = id;
         this.collectionId = collectionId;
