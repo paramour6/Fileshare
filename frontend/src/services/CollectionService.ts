@@ -9,6 +9,8 @@ export default class CollectionService
 
     public async getAllCollections(visibility?: boolean | undefined, byUserId?: number | undefined): Promise<CollectionDto[]>
     {
+        console.log("[CollectionService] Getting all collections.");
+
         try
         {
             const response = await this.backend.get("/collections");
@@ -30,6 +32,8 @@ export default class CollectionService
 
     public async getAllCollectionsByVisibility(visibility: boolean): Promise<CollectionDto[]>
     {
+        console.log("[CollectionService] Getting all collections by visibility of " + visibility);
+
         try
         {
             if(visibility)
@@ -59,6 +63,8 @@ export default class CollectionService
 
     public async getAllCollectionsByUser(userId: number): Promise<CollectionDto[]>
     {
+        console.log("[CollectionService] Getting all collections by user " + userId);
+
         try
         {
             const response = await this.backend.get("/collections?userId=" + userId);
@@ -77,6 +83,8 @@ export default class CollectionService
 
     public async getCollectionFiles(collection: CollectionDto): Promise<FileDto[]>
     {
+        console.log("[CollectionService] Getting files from collection " + collection.id);
+
         try
         {
             const response = await this.backend.get("/collections/" + collection.id + "/files");
@@ -98,6 +106,8 @@ export default class CollectionService
 
     public async createCollection(collection: CollectionDto): Promise<CollectionDto | undefined>
     {
+        console.log("[CollectionService] Creating collection.");
+
         try
         {
             const response = await this.backend.post("/collections", collection);
@@ -119,6 +129,8 @@ export default class CollectionService
 
     public async downloadFile(file: FileDto): Promise<string | null>
     {
+        console.log("[CollectionService] Downloading file from collection " + file.collectionId);
+
         try
         {
             const config: AxiosRequestConfig = {
@@ -146,6 +158,8 @@ export default class CollectionService
 
     public async uploadFiles(collectionId: number, formData: FormData): Promise<boolean>
     {
+        console.log("[CollectionService] Uploading files to collection " + collectionId);
+
         try
         {
             const response = await this.backend.post("/collections/" + collectionId + "/files", formData);

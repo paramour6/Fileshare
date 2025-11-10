@@ -12,6 +12,8 @@ interface FileListProps
 
 const FileListComponent: React.FC<FileListProps> = (props: FileListProps) =>
 {
+    console.log("[FileListComponent] Rendering a file list component.");
+
     const collection: CollectionDto = props.collection;
     const collectionService: CollectionService = props.collectionService;
     const [fileList, setFileList] = useState<FileDto[]>([]);
@@ -21,6 +23,8 @@ const FileListComponent: React.FC<FileListProps> = (props: FileListProps) =>
     {
         const getFiles = async() =>
         {
+            console.log("[FileListComponent] Getting file list.");
+
             const urls: Record<string, string | null> = {};
             const files = await collectionService.getCollectionFiles(collection);
             
@@ -39,6 +43,8 @@ const FileListComponent: React.FC<FileListProps> = (props: FileListProps) =>
 
     const getDownloadAnchor = (filename: string) =>
     {
+        console.log("[FileListComponent] Generating download anchor.");
+        
         if((urls[filename] === undefined) || (urls[filename] === null))
         {
             return (

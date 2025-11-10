@@ -7,6 +7,8 @@ export default class UserService
 
     public async getAllUsers(): Promise<UserDto[]>
     {
+        console.log("[UserService] Getting all users.");
+
         try
         {
             const response = await this.backend.get("/users");
@@ -28,6 +30,8 @@ export default class UserService
 
     public async getUserById(id: number): Promise<UserDto | undefined>
     {
+        console.log("[UserService] Getting user by id of " + id);
+
         try
         {
             const response = await this.backend.get("/users/" + id);
@@ -44,6 +48,8 @@ export default class UserService
 
     public async getUserByUsername(username: string): Promise<UserDto | undefined>
     {
+        console.log("[UserService] Getting user by username of " + username);
+
         try
         {
             const response = await this.backend.get("/users?username=" + username);
@@ -60,6 +66,8 @@ export default class UserService
 
     public async updateUser(user: UserDto): Promise<boolean>
     {
+        console.log("[UserService] Updating user " + user.id);
+        
         try
         {
             const response = await this.backend.post("/users/" + user.id, user);

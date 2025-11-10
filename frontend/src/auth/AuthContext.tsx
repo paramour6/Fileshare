@@ -18,6 +18,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>
 
     const login = (jwt: string, userId: number) =>
     {
+        console.log("[AuthContext] Saving login details.");
+
         localStorage.setItem("token", jwt);
         localStorage.setItem("user_id", userId.toString());
         setToken(jwt);
@@ -25,6 +27,8 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) =>
 
     const logout = () =>
     {
+        console.log("[AuthContext] Logging out.");
+        
         localStorage.removeItem("token");
         localStorage.removeItem("user_id");
         setToken(null);

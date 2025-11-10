@@ -6,6 +6,8 @@ import RegisterDto from "../../auth/RegisterDto";
 
 function RegisterComponent(): React.ReactElement
 {
+    console.log("[RegisterComponent] Rendering a register component.");
+
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [emailAddress, setEmailAddress] = useState("");
@@ -14,6 +16,8 @@ function RegisterComponent(): React.ReactElement
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) =>
     {
+        console.log("[RegisterComponent] Handling registration submission.");
+
         e.preventDefault();
 
         if(username.length < 3 || username.length > 36)
@@ -38,6 +42,8 @@ function RegisterComponent(): React.ReactElement
 
         if(!(await ApiService.register(registerDetails)))
         {
+            console.error("[RegisterComponent] Invalid registration!");
+            
             setInvalidRegistration(true);
         }
         else navigate("/login");

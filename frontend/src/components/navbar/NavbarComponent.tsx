@@ -5,6 +5,8 @@ import { useAuth } from "../../auth/AuthContext";
 
 function NavbarComponent(): React.ReactElement
 {
+    console.log("[NavbarComponent] Rendering a navbar component.");
+    
     const {isAuthenticated} = useAuth();
 
     const unauthenticatedNavbar = (): React.ReactElement =>

@@ -8,6 +8,8 @@ export default class ApiService
 
     public static getInstance(): AxiosInstance
     {
+        console.log("[ApiService] Creating Axios API instance.");
+        
         const backend = axios.create(
             {
                 baseURL: ApiService.API_URL
@@ -28,6 +30,8 @@ export default class ApiService
 
     public static async login(loginDetails: LoginDto, callback: (token: string, userId: number) => void): Promise<boolean>
     {
+        console.log("[ApiService] Logging user in.");
+
         try
         {
             const response = await axios.post(ApiService.API_URL + "/login", loginDetails);
@@ -41,11 +45,12 @@ export default class ApiService
 
             callback(token, userId);
 
+            console.log("[ApiService] Login successful. Redirecting.");
             return true;
         }
         catch(error)
         {
-            console.error("Invalid login!");
+            console.error("[ApiService] Invalid login!");
 
             return false;
         }
@@ -53,6 +58,8 @@ export default class ApiService
 
     public static async register(registerDetails: RegisterDto): Promise<boolean>
     {
+        console.log("[ApiService] Registering user.");
+
         try
         {
             const response = await axios.post(ApiService.API_URL + "/register", registerDetails);
@@ -61,7 +68,7 @@ export default class ApiService
         }
         catch(err)
         {
-            console.error("Invalid registration!");
+            console.error("[ApiService] Invalid registration!");
 
             return false;
         }
@@ -69,21 +76,25 @@ export default class ApiService
 
     public static getCurrentUserId(): number
     {
+        console.log("[ApiService] Getting current user ID from local storage.");
+
         let userId: string | null = localStorage.getItem("user_id");
 
         if(userId !== null)
         {
             let id = parseInt(userId);
 
-            if(isNaN(id)) throw new Error("Could not parse user ID!");
+            if(isNaN(id)) throw new Error("[ApiService] Could not parse user ID!");
 
             return id;
         }
-        else throw new Error("Could not get user_id from local storage!");
+        else throw new Error("[ApiService] Could not get user_id from local storage!");
     }
 
     private static async fetchCurrentUserId(token: string): Promise<number | undefined>
     {
+        console.log("[ApiService] Fetching current user ID.");
+
         try
         {
             const response = await axios.get(ApiService.API_URL + "/curuserid", {headers: {Authorization: `Bearer ${token}`}});
@@ -92,7 +103,7 @@ export default class ApiService
         }
         catch(error)
         {
-            console.error("Could not fetch current user ID!");
+            console.error("[ApiService] Could not fetch current user ID!");
 
             return undefined;
         }

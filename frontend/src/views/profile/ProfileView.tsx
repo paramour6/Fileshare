@@ -14,6 +14,8 @@ const collectionService: CollectionService = new CollectionService();
 
 function ProfileView(): React.ReactElement
 {
+    console.log("[ProfileView] Rendering profile view component.");
+
     const [collectionList, setCollectionList] = useState<CollectionDto[]>([]);
     const [user, setUser] = useState<UserDto | undefined>(undefined);
     const [usernameField, setUsernameField] = useState("");
@@ -28,6 +30,8 @@ function ProfileView(): React.ReactElement
 
         const loadUser = async() =>
         {
+            console.log("[ProfileView] Loading user.");
+
             let userId: number = ApiService.getCurrentUserId();
             let fetchedUser = await userService.getUserById(userId);
 
@@ -44,6 +48,8 @@ function ProfileView(): React.ReactElement
 
         const loadUserCollections = async() =>
         {
+            console.log("[ProfileView] Loading user collections.");
+
             setCollectionList(await collectionService.getAllCollectionsByUser(ApiService.getCurrentUserId()));
         }
 
@@ -64,6 +70,8 @@ function ProfileView(): React.ReactElement
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) =>
     {
+        console.log("[ProfileView] Submitting profile update.");
+
         e.preventDefault();
 
         const updatedUsername = usernameField;
@@ -80,6 +88,8 @@ function ProfileView(): React.ReactElement
         }
         else
         {
+            console.error("[ProfileView] Error submitting profile update!");
+            
             setUsernameField("");
             setEmailField("");
             setPasswordField("");

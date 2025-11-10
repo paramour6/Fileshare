@@ -2,6 +2,8 @@ import React from "react"
 
 function HomeView(): React.ReactElement
 {
+    console.log("[HomeView] Rendering home view component.");
+    
     return (
         <div>
             <img src="favicon512.png" width={360} height={360} alt="Fileshare Logo" />

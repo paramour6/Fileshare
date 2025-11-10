@@ -5,6 +5,8 @@ import UserDto from "../../models/UserDto";
 
 function UsersView(): React.ReactElement
 {
+    console.log("[UsersView] Rendering users view component.");
+
     const [userList, setUserList] = useState<UserDto[]>([]);
 
     useEffect(() =>
@@ -12,6 +14,8 @@ function UsersView(): React.ReactElement
         const userService: UserService = new UserService();
         const getUsers = async() =>
         {
+            console.log("[UsersView] Loading user list.");
+            
             setUserList(await userService.getAllUsers());
         }
 

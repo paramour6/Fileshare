@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 function CreateCollectionComponent(): React.ReactElement
 {
+    console.log("[CreateCollectionComponent] Rendering a create collection component.");
+
     const collectionService: CollectionService = new CollectionService();
     const navigate = useNavigate();
     const [checkedVisibility, setCheckedVisibility] = useState<string>("public");
@@ -20,6 +22,8 @@ function CreateCollectionComponent(): React.ReactElement
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) =>
     {
+        console.log("[CreateCollectionComponent] Handling create collection submission.");
+
         e.preventDefault();
 
         const currentUserId: number = ApiService.getCurrentUserId();
@@ -55,6 +59,8 @@ function CreateCollectionComponent(): React.ReactElement
         {
             if(res)
             {
+                console.log("[CreateCollectionComponent] Collection submission successful. Redirecting.");
+                
                 errorCreating = false;
                 navigate("/profile");
             }

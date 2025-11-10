@@ -7,6 +7,8 @@ import { useAuth } from "../../auth/AuthContext";
 
 function LoginComponent(): React.ReactElement
 {
+    console.log("[LoginComponent] Rendering a login component.");
+
     const {login} = useAuth();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -15,12 +17,16 @@ function LoginComponent(): React.ReactElement
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) =>
     {
+        console.log("[LoginComponent] Submitting login form.");
+
         e.preventDefault();
         
         const loginDetails: LoginDto = {username: username, password: password};
 
         if(!(await ApiService.login(loginDetails, login)))
         {
+            console.error("[LoginComponent] Invalid credentials provided!");
+            
             setInvalidCredentials(true);
         }
         else navigate("/");
