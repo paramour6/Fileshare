@@ -10,7 +10,7 @@ public class FileshareApplication
 {
 	public static void main(String[] args)
 	{
-		log.info("[FileshareApplication] Entry point called in FileshareApplication.java");
+		log.info("[FileshareApplication] Entry point called in FileshareApplication.java...");
 
 		SpringApplication.run(FileshareApplication.class, args);
 	}
