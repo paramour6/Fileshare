@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.gcu.fileshare.dao.entity.CollectionEntity;
 
+/**
+ * Collection repository interface
+ */
 @Repository
 public interface CollectionRepository extends JpaRepository<CollectionEntity, Long>
 {

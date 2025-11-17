@@ -2,6 +2,9 @@ package com.gcu.fileshare.dto.auth;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * DTO for a login response
+ */
 @Slf4j
 public class LoginResponseDto
 {
@@ -14,11 +17,17 @@ public class LoginResponseDto
         this.jwtToken = jwtToken;
     }
 
+    /** 
+     * @return String
+     */
     public String getJwtToken()
     {
         return this.jwtToken;
     }
 
+    /** 
+     * @param jwtToken
+     */
     public void setJwtToken(String jwtToken)
     {
         this.jwtToken = jwtToken;

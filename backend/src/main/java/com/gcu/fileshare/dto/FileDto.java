@@ -2,6 +2,9 @@ package com.gcu.fileshare.dto;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * DTO for a file
+ */
 @Slf4j
 public class FileDto
 {
@@ -33,51 +36,81 @@ public class FileDto
         this.fileSizeKb = fileSizeKb;
     }
 
+    /** 
+     * @return long
+     */
     public long getId() 
     {
         return this.id;
     }
 
+    /** 
+     * @param id
+     */
     public void setId(long id) 
     {
         this.id = id;
     }
 
+    /** 
+     * @return long
+     */
     public long getCollectionId() 
     {
         return this.collectionId;
     }
 
+    /** 
+     * @param collectionId
+     */
     public void setCollectionId(long collectionId) 
     {
         this.collectionId = collectionId;
     }
 
+    /** 
+     * @return String
+     */
     public String getFileName() 
     {
         return this.fileName;
     }
 
+    /** 
+     * @param fileName
+     */
     public void setFileName(String fileName) 
     {
         this.fileName = fileName;
     }
 
+    /** 
+     * @return String
+     */
     public String getFileType() 
     {
         return this.fileType;
     }
 
+    /** 
+     * @param fileType
+     */
     public void setFileType(String fileType) 
     {
         this.fileType = fileType;
     }
 
+    /** 
+     * @return int
+     */
     public int getFileSizeKb() 
     {
         return this.fileSizeKb;
     }
 
+    /** 
+     * @param fileSizeKb
+     */
     public void setFileSizeKb(int fileSizeKb) 
     {
         this.fileSizeKb = fileSizeKb;

@@ -14,6 +14,9 @@ import com.gcu.fileshare.dao.repository.UserRepository;
 import com.gcu.fileshare.dao.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Service for getting user details. Used in the security configuration
+ */
 @Service
 @Slf4j
 public class CustomUserDetailsService implements UserDetailsService
@@ -21,6 +24,11 @@ public class CustomUserDetailsService implements UserDetailsService
     @Autowired
     private UserRepository userRepository;
 
+    /** 
+     * @param username Username to load user for
+     * @return UserDetails for matching user
+     * @throws UsernameNotFoundException Thrown if username is not found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {

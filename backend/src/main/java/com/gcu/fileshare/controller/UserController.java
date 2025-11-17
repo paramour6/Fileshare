@@ -1,27 +1,23 @@
 package com.gcu.fileshare.controller;
 
 import com.gcu.fileshare.dto.UserDto;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gcu.fileshare.service.UserService;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.Optional;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import com.gcu.fileshare.config.AuthenticatedController;
-
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Controller for handling user related requests
+ */
 @RestController
 @Slf4j
 public class UserController extends AuthenticatedController
@@ -29,6 +25,9 @@ public class UserController extends AuthenticatedController
     @Autowired
     private UserService userService;
 
+    /** 
+     * @return The ID of the current user
+     */
     @GetMapping("/curuserid")
     public ResponseEntity<?> getCurrentUserId()
     {
@@ -52,6 +51,11 @@ public class UserController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param username Username to find
+     * @param emailAddress Email address to find
+     * @return The user(s) found with matching criteria
+     */
     @GetMapping("/users")
     public ResponseEntity<?> getAllUsers(@RequestParam(required=false) String username, @RequestParam(required=false) String emailAddress)
     {
@@ -96,6 +100,10 @@ public class UserController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param id The ID of the user to get
+     * @return The user with the matching ID
+     */
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUserById(@PathVariable long id)
     {
@@ -119,6 +127,11 @@ public class UserController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param id ID of user to update
+     * @param userDto The updated user DTO
+     * @return The updated user
+     */
     @PostMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable long id, @RequestBody UserDto userDto)
     {

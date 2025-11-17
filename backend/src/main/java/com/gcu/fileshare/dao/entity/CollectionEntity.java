@@ -12,6 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
+/**
+ * The entity class for a collection
+ */
 @Entity
 @Table(name="Collections")
 public class CollectionEntity
@@ -45,41 +48,65 @@ public class CollectionEntity
         this.createdAt = createdAt;
     }
 
+    /** 
+     * @return long
+     */
     public long getId()
     {
         return this.id;
     }
 
+    /** 
+     * @param id
+     */
     public void setId(long id)
     {
         this.id = id;
     }
 
+    /** 
+     * @return UserEntity
+     */
     public UserEntity getUser()
     {
         return this.user;
     }
 
+    /** 
+     * @param user
+     */
     public void setUser(UserEntity user)
     {
         this.user = user;
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean getVisibility()
     {
         return this.visibility;
     }
 
+    /** 
+     * @param visibility
+     */
     public void setVisibility(boolean visibility)
     {
         this.visibility = visibility;
     }
 
+    /** 
+     * @return LocalDate
+     */
     public LocalDate getCreatedAt()
     {
         return this.createdAt;
     }
 
+    /** 
+     * @param createdAt
+     */
     public void setCreatedAt(LocalDate createdAt)
     {
         this.createdAt = createdAt;

@@ -14,6 +14,9 @@ import com.gcu.fileshare.dto.auth.RegisterDto;
 import com.gcu.fileshare.service.auth.AuthenticationService;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Controller for handling login and registration
+ */
 @RestController
 @Slf4j
 public class AuthenticationController
@@ -21,6 +24,10 @@ public class AuthenticationController
     @Autowired
     private AuthenticationService authenticationService;
 
+    /** 
+     * @param loginRequest The login credentials
+     * @return A valid JWT if the credentials match
+     */
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequestDto loginRequest)
     {
@@ -36,6 +43,10 @@ public class AuthenticationController
         return ResponseEntity.ok(token);
     }
 
+    /** 
+     * @param registerRequest The registration credentials
+     * @return The created user
+     */
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterDto registerRequest)
     {
@@ -51,6 +62,9 @@ public class AuthenticationController
         return ResponseEntity.ok(user.get());
     }
 
+    /** 
+     * @return ResponseEntity<?>
+     */
     @GetMapping("/")
     public ResponseEntity<?> root()
     {

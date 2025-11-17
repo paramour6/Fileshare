@@ -3,7 +3,6 @@ package com.gcu.fileshare.controller;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,20 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gcu.fileshare.config.AuthenticatedController;
 import com.gcu.fileshare.dto.CollectionDto;
 import com.gcu.fileshare.dto.UserDto;
 import com.gcu.fileshare.service.CollectionService;
 import com.gcu.fileshare.service.UserService;
-
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+/**
+ * Controller for handling collection related requests
+ */
 @RestController
 @Slf4j
 public class CollectionController extends AuthenticatedController
@@ -36,6 +34,11 @@ public class CollectionController extends AuthenticatedController
     @Autowired
     private UserService userService;
 
+    /** 
+     * @param userId ID of user to find collections for
+     * @param visibility Public/Private collections
+     * @return List of collection DTOs
+     */
     @GetMapping("/collections")
     public ResponseEntity<?> findAllCollections(@RequestParam(required=false) Long userId, @RequestParam(required=false) Boolean visibility)
     {
@@ -74,6 +77,10 @@ public class CollectionController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param id ID of collection to find
+     * @return Collection with matching ID
+     */
     @GetMapping("/collections/{id}")
     public ResponseEntity<?> findCollectionById(@PathVariable long id)
     {
@@ -97,6 +104,10 @@ public class CollectionController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param collectionDto The collection to be created
+     * @return The created collection
+     */
     @PostMapping("/collections")
     public ResponseEntity<?> createCollection(@RequestBody CollectionDto collectionDto)
     {
@@ -120,6 +131,11 @@ public class CollectionController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param id ID of collection to upload to
+     * @param files List of files to upload
+     * @return A 200 OK status
+     */
     @PostMapping(value="/collections/{id}/files", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadFilesToCollection(@PathVariable long id, @RequestParam("files") List<MultipartFile> files)
     {
@@ -141,6 +157,12 @@ public class CollectionController extends AuthenticatedController
         }
     }
 
+    /** 
+     * @param id ID of collection
+     * @param download Indicate a download or not
+     * @param filename Filename to download
+     * @return The downloaded file DTOs or octet streams
+     */
     @GetMapping("/collections/{id}/files")
     public ResponseEntity<?> getFilesFromCollection(@PathVariable long id, @RequestParam(required=false) Boolean download, @RequestParam(required=false) String filename)
     {

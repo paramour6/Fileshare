@@ -13,6 +13,9 @@ import com.gcu.fileshare.service.util.CryptographyService;
 import com.gcu.fileshare.service.util.MapperService;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Service for handling user related operations
+ */
 @Service
 @Slf4j
 public class UserService
@@ -22,6 +25,9 @@ public class UserService
     @Autowired
     private CryptographyService cryptographyService;
 
+    /** 
+     * @return List<UserDto>
+     */
     public List<UserDto> findAllUsers()
     {
         log.info("[UserService] findAllUsers() called.");
@@ -31,6 +37,10 @@ public class UserService
         return userEntities.stream().map(MapperService::toDto).collect(Collectors.toList());
     }
 
+    /** 
+     * @param id ID of user to find
+     * @return Optional<UserDto>
+     */
     public Optional<UserDto> findUserById(long id)
     {
         log.info("[UserService] findUserById(long id) called.");
@@ -44,6 +54,10 @@ public class UserService
         else return Optional.empty();
     }
 
+    /** 
+     * @param username Username of user to find
+     * @return Optional<UserDto>
+     */
     public Optional<UserDto> findUserByUsername(String username)
     {
         log.info("[UserService] findUserByUsername(string username) called.");
@@ -57,6 +71,10 @@ public class UserService
         else return Optional.empty();
     }
 
+    /** 
+     * @param emailAddress Email address of user to find
+     * @return Optional<UserDto>
+     */
     public Optional<UserDto> findUserByEmailAddress(String emailAddress)
     {
         log.info("[UserService] findUserByEmailAddress(string emailAddress) called.");
@@ -70,6 +88,10 @@ public class UserService
         else return Optional.empty();
     }
 
+    /** 
+     * @param registerDetails Registration details of user to create
+     * @return Optional<UserDto>
+     */
     public Optional<UserDto> createUser(RegisterDto registerDetails)
     {
         log.info("[UserService] createUser(RegisterDto registerDetails) called.");
@@ -86,6 +108,10 @@ public class UserService
         return Optional.of(MapperService.toDto(user));
     }
 
+    /** 
+     * @param user User to update
+     * @return Optional<UserDto>
+     */
     public Optional<UserDto> updateUser(UserDto user)
     {
         log.info("[UserService] updateUser(UserDto user) called.");

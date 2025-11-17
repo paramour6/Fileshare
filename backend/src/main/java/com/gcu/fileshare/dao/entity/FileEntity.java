@@ -11,6 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.ConstraintMode;
 
+/**
+ * The entity class for a file
+ */
 @Entity
 @Table(name="Files")
 public class FileEntity 
@@ -56,71 +59,113 @@ public class FileEntity
         this.hashSalt = hashSalt;
     }
 
+    /** 
+     * @return long
+     */
     public long getId() 
     {
         return this.id;
     }
 
+    /** 
+     * @param id
+     */
     public void setId(long id) 
     {
         this.id = id;
     }
 
+    /** 
+     * @return CollectionEntity
+     */
     public CollectionEntity getCollection() 
     {
         return this.collection;
     }
 
+    /** 
+     * @param collectionEntity
+     */
     public void setCollection(CollectionEntity collectionEntity) 
     {
         this.collection = collectionEntity;
     }
 
+    /** 
+     * @return String
+     */
     public String getFileName() 
     {
         return this.fileName;
     }
 
+    /** 
+     * @param fileName
+     */
     public void setFileName(String fileName) 
     {
         this.fileName = fileName;
     }
 
+    /** 
+     * @return String
+     */
     public String getFileType() 
     {
         return this.fileType;
     }
 
+    /** 
+     * @param fileType
+     */
     public void setFileType(String fileType) 
     {
         this.fileType = fileType;
     }
 
+    /** 
+     * @return int
+     */
     public int getFileSizeKb() 
     {
         return this.fileSizeKb;
     }
 
+    /** 
+     * @param fileSizeKb
+     */
     public void setFileSizeKb(int fileSizeKb) 
     {
         this.fileSizeKb = fileSizeKb;
     }
 
+    /** 
+     * @return String
+     */
     public String getHashedFileName() 
     {
         return this.hashedFileName;
     }
 
+    /** 
+     * @param hashedFileName
+     */
     public void setHashedFileName(String hashedFileName) 
     {
         this.hashedFileName = hashedFileName;
     }
 
+    /** 
+     * @return String
+     */
     public String getHashSalt()
     {
         return this.hashSalt;
     }
 
+    /** 
+     * @param hashSalt
+     */
     public void setHashSalt(String hashSalt)
     {
         this.hashSalt = hashSalt;

@@ -2,6 +2,9 @@ package com.gcu.fileshare.dto;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * DTO for a collection
+ */
 @Slf4j
 public class CollectionDto
 {
@@ -30,41 +33,65 @@ public class CollectionDto
         this.createdAt = createdAt;
     }
 
+    /** 
+     * @return long
+     */
     public long getId()
     {
         return this.id;
     }
 
+    /** 
+     * @param id
+     */
     public void setId(long id)
     {
         this.id = id;
     }
 
+    /** 
+     * @return long
+     */
     public long getUserId()
     {
         return this.userId;
     }
 
+    /** 
+     * @param userId
+     */
     public void setUserId(long userId)
     {
         this.userId = userId;
     }
 
+    /** 
+     * @return boolean
+     */
     public boolean getVisibility()
     {
         return this.visibility;
     }
     
+    /** 
+     * @param visibility
+     */
     public void setVisibility(boolean visibility)
     {
         this.visibility = visibility;
     }
 
+    /** 
+     * @return String
+     */
     public String getCreatedAt()
     {
         return this.createdAt;
     }
 
+    /** 
+     * @param createdAt
+     */
     public void setCreatedAt(String createdAt)
     {
         this.createdAt = createdAt;

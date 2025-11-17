@@ -5,9 +5,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Abstract controller allowing child-controllers to get the requesting user
+ */
 @Slf4j
 public abstract class AuthenticatedController
 {
+    /** 
+     * @return A UserDetails object representing the requesting user
+     */
     protected UserDetails getRequestingUser()
     {
         log.info("[AuthenticatedController] Getting requesting user");

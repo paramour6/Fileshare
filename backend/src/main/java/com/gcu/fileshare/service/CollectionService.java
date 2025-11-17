@@ -5,29 +5,26 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gcu.fileshare.dao.entity.CollectionEntity;
 import com.gcu.fileshare.dao.entity.UserEntity;
 import com.gcu.fileshare.dto.CollectionDto;
 import com.gcu.fileshare.dao.repository.CollectionRepository;
 import com.gcu.fileshare.dto.UserDto;
 import com.gcu.fileshare.service.util.MapperService;
-
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.gcu.fileshare.dao.repository.UserRepository;
 import com.gcu.fileshare.dto.FileDto;
-
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Service for handling collection related operations
+ */
 @Service
 @Slf4j
 public class CollectionService
@@ -39,6 +36,9 @@ public class CollectionService
     @Autowired
     private AzureService azureService;
 
+    /** 
+     * @return List<CollectionDto>
+     */
     public List<CollectionDto> findAll()
     {
         log.info("[CollectionService] findAll() called.");
@@ -48,6 +48,10 @@ public class CollectionService
         return collectionEntities.stream().map(MapperService::toDto).collect(Collectors.toList());
     }
 
+    /** 
+     * @param id ID of collection to find
+     * @return Optional<CollectionDto>
+     */
     public Optional<CollectionDto> findCollectionById(long id)
     {
         log.info("[CollectionService] findCollectionById(long id) called.");
@@ -61,6 +65,10 @@ public class CollectionService
         else return Optional.empty();
     }
 
+    /** 
+     * @param userDto User to find collections by
+     * @return List<CollectionDto>
+     */
     public List<CollectionDto> findAllByUser(UserDto userDto)
     {
         log.info("[CollectionService] findAllByUser(UserDto userDto) called.");
@@ -70,6 +78,10 @@ public class CollectionService
         return collectionEntities.stream().map(MapperService::toDto).collect(Collectors.toList());
     }
 
+    /** 
+     * @param visibility Visiblity of collections to find
+     * @return List<CollectionDto>
+     */
     public List<CollectionDto> findAllByVisibility(boolean visibility)
     {
         log.info("[CollectionService] findAllByVisibility() called.");
@@ -79,6 +91,10 @@ public class CollectionService
         return collectionEntities.stream().map(MapperService::toDto).collect(Collectors.toList());
     }
 
+    /** 
+     * @param collection Collection to create
+     * @return Optional<CollectionDto>
+     */
     public Optional<CollectionDto> createCollection(CollectionDto collection)
     {
         log.info("[CollectionService] Creating collection.");
@@ -102,6 +118,11 @@ public class CollectionService
         return Optional.of(MapperService.toDto(collectionEntity));
     }
 
+    /** 
+     * @param collectionId ID of collection to upload files to
+     * @param fileList List of files to upload
+     * @return True if successful, false if otherwise
+     */
     public boolean uploadFilesToCollection(long collectionId, List<MultipartFile> fileList)
     {
         log.info("[CollectionService] Uploading list of files to collection.");
@@ -125,6 +146,10 @@ public class CollectionService
         }
     }
 
+    /** 
+     * @param collectionId ID of collection to get files from
+     * @return List<FileDto>
+     */
     public List<FileDto> getCollectionFiles(long collectionId)
     {
         log.info("[CollectionService] Getting collection files.");
@@ -148,6 +173,12 @@ public class CollectionService
        
     }
 
+    /** 
+     * @param collectionId ID of collection
+     * @param filename File to get bytes from
+     * @return byte[]
+     * @throws FileNotFoundException Thrown if file does not exist
+     */
     public byte[] getCollectionFileBytes(long collectionId, String filename) throws FileNotFoundException
     {
         log.info("[CollectionService] Getting collection file's bytes.");

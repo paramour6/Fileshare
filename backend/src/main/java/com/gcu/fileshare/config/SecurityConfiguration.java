@@ -13,15 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import com.gcu.fileshare.config.jwt.JwtFilter;
 
+/**
+ * Security configuration
+ */
 @Configuration
 public class SecurityConfiguration
 {
     @Autowired
     private JwtFilter jwtFilter;
 
+    /** 
+     * @param http
+     * @return SecurityFilterChain
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
@@ -39,12 +46,20 @@ public class SecurityConfiguration
         return http.build();
     }
 
+    /** 
+     * @param config
+     * @return AuthenticationManager
+     * @throws Exception
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
     {
         return config.getAuthenticationManager();
     }
 
+    /** 
+     * @return WebMvcConfigurer
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer()
     {
@@ -61,6 +76,9 @@ public class SecurityConfiguration
         };
     }
 
+    /** 
+     * @return BCryptPasswordEncoder
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder()
     {

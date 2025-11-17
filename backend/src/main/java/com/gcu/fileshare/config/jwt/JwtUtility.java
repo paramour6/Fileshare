@@ -10,6 +10,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Utlity class for handling JWTs
+ */
 @Component
 @Slf4j
 public class JwtUtility
@@ -29,6 +32,10 @@ public class JwtUtility
         this.KEY = Keys.hmacShaKeyFor(secret.getBytes(StandardCharset.UTF_8));
     }
 
+    /** 
+     * @param username Creates a JWT with the username as the subject
+     * @return The created JWT
+     */
     public String createToken(String username)
     {
         log.info("[JwtUtility] Creating JWT");
@@ -40,6 +47,11 @@ public class JwtUtility
         return Jwts.builder().subject(username).issuedAt(new Date()).expiration(calendar.getTime()).signWith(KEY).compact();
     }
 
+    /** 
+     * @param token JWT string to validate
+     * @param username Username to check JWT subject against
+     * @return boolean
+     */
     public boolean validateToken(String token, String username)
     {
         log.info("[JwtUtility] Validating token");
@@ -51,6 +63,10 @@ public class JwtUtility
         return (expirationDate.after(new Date()) && subjectUsername.equals(username));
     }
 
+    /** 
+     * @param token JWT to parse username from
+     * @return Parsed username
+     */
     public String parseUsername(String token)
     {
         log.info("[JwtUtility] Parsing username from subject claim");

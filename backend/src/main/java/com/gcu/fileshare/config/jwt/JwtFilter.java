@@ -2,25 +2,23 @@ package com.gcu.fileshare.config.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import com.gcu.fileshare.service.auth.CustomUserDetailsService;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-
 import java.io.IOException;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Security filter for checking and authenticating requests with/without JWTs
+ */
 @Component
 @Slf4j
 public class JwtFilter extends OncePerRequestFilter
@@ -30,6 +28,13 @@ public class JwtFilter extends OncePerRequestFilter
     @Autowired
     private JwtUtility jwtUtility;
 
+    /** 
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
     {

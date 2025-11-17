@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 
+/**
+ * The entity class for a shared collection
+ */
 @Entity
 @Table(name="SharedCollections")
 public class SharedCollectionEntity
@@ -46,31 +49,49 @@ public class SharedCollectionEntity
         this.sharedWithUser = sharedWithUser;
     }
 
+    /** 
+     * @return long
+     */
     public long getId()
     {
         return this.id;
     }
 
+    /** 
+     * @param id
+     */
     public void setId(long id)
     {
         this.id = id;
     }
 
+    /** 
+     * @return CollectionEntity
+     */
     public CollectionEntity getCollection()
     {
         return this.collection;
     }
 
+    /** 
+     * @param collection
+     */
     public void setCollection(CollectionEntity collection)
     {
         this.collection = collection;
     }
 
+    /** 
+     * @return UserEntity
+     */
     public UserEntity getSharedWithUser()
     {
         return this.sharedWithUser;
     }
 
+    /** 
+     * @param sharedWithUser
+     */
     public void setSharedWithUser(UserEntity sharedWithUser)
     {
         this.sharedWithUser = sharedWithUser;

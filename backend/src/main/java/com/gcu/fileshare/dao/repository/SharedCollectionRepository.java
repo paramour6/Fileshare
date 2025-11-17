@@ -8,6 +8,9 @@ import com.gcu.fileshare.dao.entity.UserEntity;
 import org.springframework.data.domain.Sort;
 import java.util.List;
 
+/**
+ * Shared collection repository interface
+ */
 @Repository
 public interface SharedCollectionRepository extends JpaRepository<SharedCollectionEntity, Long>
 {

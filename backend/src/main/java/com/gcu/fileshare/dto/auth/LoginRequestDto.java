@@ -2,6 +2,9 @@ package com.gcu.fileshare.dto.auth;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * DTO for a login request
+ */
 @Slf4j
 public class LoginRequestDto
 {
@@ -24,21 +27,33 @@ public class LoginRequestDto
         this.password = "";
     }
 
+    /** 
+     * @return String
+     */
     public String getUsername()
     {
         return this.username;
     }
 
+    /** 
+     * @param username
+     */
     public void setUsername(String username)
     {
         this.username = username;
     }
 
+    /** 
+     * @return String
+     */
     public String getPassword()
     {
         return this.password;
     }
 
+    /** 
+     * @param password
+     */
     public void setPassword(String password)
     {
         this.password = password;

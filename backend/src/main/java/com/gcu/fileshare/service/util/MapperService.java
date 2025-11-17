@@ -5,10 +5,17 @@ import com.gcu.fileshare.dto.*;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Service for mapping entities to DTOs
+ */
 @Service
 @Slf4j
 public class MapperService
 {
+    /** 
+     * @param userEntity Entity to map
+     * @return UserDto
+     */
     public static UserDto toDto(UserEntity userEntity)
     {
         log.info("[MapperService] Mapping UserEntity to UserDto.");
@@ -18,6 +25,10 @@ public class MapperService
         return userDto;
     }
 
+    /** 
+     * @param collectionEntity Entity to map
+     * @return CollectionDto
+     */
     public static CollectionDto toDto(CollectionEntity collectionEntity)
     {
         log.info("[MapperService] Mapping CollectionEntity to CollectionDto.");
@@ -30,6 +41,10 @@ public class MapperService
         return collectionDto;
     }
 
+    /** 
+     * @param fileEntity Entity to map
+     * @return FileDto
+     */
     public static FileDto toDto(FileEntity fileEntity)
     {
         log.info("[MapperService] Mapping FileEntity to FileDto.");
@@ -43,6 +58,10 @@ public class MapperService
         return fileDto;
     }
 
+    /** 
+     * @param sharedCollectionEntity Entity to map
+     * @return SharedCollectionDto
+     */
     public static SharedCollectionDto toDto(SharedCollectionEntity sharedCollectionEntity)
     {
         log.info("[MapperService] Mapping SharedCollectionEntity to SharedCollectionDto.");
