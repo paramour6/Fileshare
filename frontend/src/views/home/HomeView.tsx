@@ -2,7 +2,7 @@ import React from "react"
 
 function HomeView(): React.ReactElement
 {
-    console.log("[HomeView] Rendering home view component.");
+    console.log("[HomeView] Rendering home view component!");
     
     return (
         <div>
